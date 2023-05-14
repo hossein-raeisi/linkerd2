@@ -269,6 +269,7 @@ type HTTPPathMatch struct {
 //
 // * "Exact"
 // * "RegularExpression"
+// * "TimeStampComp
 //
 // Note that values may be added to this enum, implementations
 // must ensure that unknown values will not cause a crash.
@@ -277,7 +278,7 @@ type HTTPPathMatch struct {
 // Attached Condition for the Route to `status: False`, with a
 // Reason of `UnsupportedValue`.
 //
-// +kubebuilder:validation:Enum=Exact;RegularExpression
+// +kubebuilder:validation:Enum=Exact;RegularExpression;TimeStampComp
 type HeaderMatchType string
 
 // HeaderMatchType constants.
@@ -441,11 +442,13 @@ const (
 //
 // ```
 // match:
-//   path:
-//     value: "/foo"
-//   headers:
-//   - name: "version"
-//     value "v1"
+//
+//	path:
+//	  value: "/foo"
+//	headers:
+//	- name: "version"
+//	  value "v1"
+//
 // ```
 type HTTPRouteMatch struct {
 	// Path specifies a HTTP request path matcher. If this field is not
